@@ -4,13 +4,12 @@ from bitcoin import *
 import interface
 from blockchain import Blockchain
 
-DEFAULT_PORTS = {'t':'50008', 's':'50009', 'h':'8088', 'g':'8089'}
+DEFAULT_PORTS = {'t':'50001', 's':'50002', 'h':'8081', 'g':'8082'}
 
 
 #TODO: update servers
 DEFAULT_SERVERS = {
-    'myr.electr.us': DEFAULT_PORTS,
-    'myr.theblockexplorer.com': DEFAULT_PORTS,
+	'digibytewiki.com': DEFAULT_PORTS,
 }
 
 DISCONNECTED_RETRY_INTERVAL = 60

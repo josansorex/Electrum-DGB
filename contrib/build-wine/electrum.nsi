@@ -7,14 +7,14 @@
 ;General
 
   ;Name and file
-  Name "Electrum-MYR"
-  OutFile "dist/electrum-myr-setup.exe"
+  Name "DigiElectrum"
+  OutFile "dist/digielectrum-setup.exe"
 
   ;Default installation folder
-  InstallDir "$PROGRAMFILES\Electrum-MYR"
+  InstallDir "$PROGRAMFILES\DigiElectrum"
 
   ;Get installation folder from registry if available
-  InstallDirRegKey HKCU "Software\Electrum-MYR" ""
+  InstallDirRegKey HKCU "Software\DigiElectrum" ""
 
   ;Request application privileges for Windows Vista
   RequestExecutionLevel admin
@@ -36,7 +36,7 @@
 
   ;Start Menu Folder Page Configuration
   !define MUI_STARTMENUPAGE_REGISTRY_ROOT "HKCU"
-  !define MUI_STARTMENUPAGE_REGISTRY_KEY "Software\Electrum-MYR"
+  !define MUI_STARTMENUPAGE_REGISTRY_KEY "Software\DigiElectrum"
   !define MUI_STARTMENUPAGE_REGISTRY_VALUENAME "Start Menu Folder"
 
   ;!insertmacro MUI_PAGE_STARTMENU Application $StartMenuFolder
@@ -59,21 +59,21 @@ Section
   SetOutPath "$INSTDIR"
 
   ;ADD YOUR OWN FILES HERE...
-  file /r dist\electrum-myr\*.*
+  file /r dist\digielectrum\*.*
 
   ;Store installation folder
-  WriteRegStr HKCU "Software\Electrum-MYR" "" $INSTDIR
+  WriteRegStr HKCU "Software\DigiElectrum" "" $INSTDIR
 
   ;Create uninstaller
   WriteUninstaller "$INSTDIR\Uninstall.exe"
 
 
-  CreateShortCut "$DESKTOP\Electrum-MYR.lnk" "$INSTDIR\electrum-myr.exe" ""
+  CreateShortCut "$DESKTOP\DigiElectrum.lnk" "$INSTDIR\DigiElectrum.exe" ""
 
   ;create start-menu items
-  CreateDirectory "$SMPROGRAMS\Electrum-MYR"
-  CreateShortCut "$SMPROGRAMS\Electrum-MYR\Uninstall.lnk" "$INSTDIR\Uninstall.exe" "" "$INSTDIR\Uninstall.exe" 0
-  CreateShortCut "$SMPROGRAMS\Electrum-MYR\Electrum-MYR.lnk" "$INSTDIR\electrum-myr.exe" "" "$INSTDIR\electrum-myr.exe" 0
+  CreateDirectory "$SMPROGRAMS\DigiElectrum"
+  CreateShortCut "$SMPROGRAMS\DigiElectrum\Uninstall.lnk" "$INSTDIR\Uninstall.exe" "" "$INSTDIR\Uninstall.exe" 0
+  CreateShortCut "$SMPROGRAMS\DigiElectrum\DigiElectrum.lnk" "$INSTDIR\DigiElectrum.exe" "" "$INSTDIR\DigiElectrum.exe" 0
 
 SectionEnd
 
@@ -95,10 +95,10 @@ Section "Uninstall"
 
   RMDir "$INSTDIR"
 
-  Delete "$DESKTOP\Electrum-MYR.lnk"
-  Delete "$SMPROGRAMS\Electrum-MYR\*.*"
-  RmDir  "$SMPROGRAMS\Electrum-MYR"
+  Delete "$DESKTOP\DigiElectrum.lnk"
+  Delete "$SMPROGRAMS\DigiElectrum\*.*"
+  RmDir  "$SMPROGRAMS\DigiElectrum"
 
-  DeleteRegKey /ifempty HKCU "Software\Electrum-MYR"
+  DeleteRegKey /ifempty HKCU "Software\DigiElectrum"
 
 SectionEnd

@@ -1,12 +1,12 @@
-Electrum - lightweight Myriadcoin client
+Electrum - lightweight Digibyte client
 
 Licence: GNU GPL v3
 Electrum Author: Thomas Voegtlin
 Language: Python
 
-Electrum Myriadcoin Homepage: TBD
+Electrum Digibyte Homepage: TBD
 
-Electrum Myriadcoin Author: Michael Wozniak
+Electrum Digibyte Author: Michael Wozniak
 
 
 Works best with Python2.7 and PyQT/QT4
@@ -14,7 +14,7 @@ Will not work with Python3 or QT5
 
 requires ecdsa, slowaes, sqlite3
 
-MYRIADCOIN DEPENDENCIES:
+DIGIBYTE DEPENDENCIES:
 
 Sha256 - built in
 Scrypt - Same as litecoin
@@ -29,13 +29,13 @@ Skein - https://github.com/CryptoRepairCrew/python_skein_hash
 
 To run Electrum from this directory, just do:
 
-  ./electrum-myr
+  ./digielectrum
 
 If you install Electrum on your system, you can run it from any
 directory:
 
   sudo python setup.py install
-  electrum-myr
+  digielectrum
 
 
 
@@ -55,4 +55,4 @@ On Mac OS X:
   # On brew installs
   ARCHFLAGS="-arch i386 -arch x86_64" sudo python setup-release.py py2app --includes sip
 
-  sudo hdiutil create -fs HFS+ -volname "Electrum-MYR" -srcfolder dist/Electrum-MYR.app dist/electrum-myr-VERSION-macosx.dmg
+  sudo hdiutil create -fs HFS+ -volname "DigiElectrum" -srcfolder dist/DigiElectrum.app dist/digielectrum-VERSION-macosx.dmg

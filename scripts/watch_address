@@ -2,12 +2,12 @@
 
 import sys
 import time
-import electrum_myr as electrum
+import electrum_dgb as electrum
 
 try:
     addr = sys.argv[1]
 except Exception:
-    print "usage: watch_address <myriadcoin_address>"
+    print "usage: watch_address <digibyte_address>"
     sys.exit(1)
 
 # start network

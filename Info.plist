@@ -6,10 +6,10 @@
   <array>
     <dict>
       <key>CFBundleURLName</key>
-      <string>myriadcoin</string>
+      <string>digibyte</string>
       <key>CFBundleURLSchemes</key>
       <array>
-        <string>myriadcoin</string>
+        <string>digibyte</string>
       </array>
     </dict>
   </array>

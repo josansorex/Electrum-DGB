@@ -34,11 +34,11 @@ from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 import PyQt4.QtCore as QtCore
 
-from electrum_myr.i18n import _, set_language
-from electrum_myr.util import print_error, print_msg
-from electrum_myr.plugins import run_hook
-from electrum_myr import WalletStorage, Wallet
-from electrum_myr.bitcoin import MIN_RELAY_TX_FEE
+from electrum_dgb.i18n import _, set_language
+from electrum_dgb.util import print_error, print_msg
+from electrum_dgb.plugins import run_hook
+from electrum_dgb import WalletStorage, Wallet
+from electrum_dgb.bitcoin import MIN_RELAY_TX_FEE
 
 try:
     import icons_rc
@@ -80,7 +80,7 @@ class ElectrumGui:
         m.addAction(_("Show/Hide"), self.show_or_hide)
         m.addAction(_("Dark/Light"), self.toggle_tray_icon)
         m.addSeparator()
-        m.addAction(_("Exit Electrum-MYR"), self.close)
+        m.addAction(_("Exit DigiElectrum"), self.close)
         self.tray.setContextMenu(m)
 
     def toggle_tray_icon(self):
@@ -170,7 +170,7 @@ class ElectrumGui:
             self.dark_icon = self.config.get("dark_icon", False)
             icon = QIcon(":icons/electrum_dark_icon.png") if self.dark_icon else QIcon(':icons/electrum_light_icon.png')
             self.tray = QSystemTrayIcon(icon, None)
-            self.tray.setToolTip('Electrum-MYR')
+            self.tray.setToolTip('DigiElectrum')
             self.tray.activated.connect(self.tray_activated)
             self.build_tray_menu()
             self.tray.show()

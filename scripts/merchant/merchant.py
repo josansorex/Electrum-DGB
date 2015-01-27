@@ -24,7 +24,7 @@ import json
 import Queue
 import sqlite3
 
-import electrum_myr as electrum
+import electrum_dgb as electrum
 electrum.set_verbosity(False)
 
 import ConfigParser

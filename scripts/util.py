@@ -6,7 +6,7 @@ from electrum_ltc.network import filter_protocol, parse_servers
 
 def get_peers():
     # 1. start interface and wait for connection
-    interface = electrum.Interface('electrum-ltc.bysh.me:50002:s')
+    interface = electrum.Interface('lemur.cryptoservices.net:50001:t')
     q = Queue.Queue()
     interface.start(q)
     i, r = q.get()

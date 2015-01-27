@@ -6,17 +6,17 @@ from sys import stderr
 from time import sleep
 from base64 import b64encode, b64decode
 
-import electrum_myr as electrum
-from electrum_myr.account import BIP32_Account
-from electrum_myr.bitcoin import EncodeBase58Check, public_key_to_bc_address, bc_address_to_hash_160
-from electrum_myr.i18n import _
-from electrum_myr.plugins import BasePlugin, hook
-from electrum_myr.transaction import deserialize
-from electrum_myr.wallet import NewWallet
-from electrum_myr.util import print_error
+import electrum_dgb as electrum
+from electrum_dgb.account import BIP32_Account
+from electrum_dgb.bitcoin import EncodeBase58Check, public_key_to_bc_address, bc_address_to_hash_160
+from electrum_dgb.i18n import _
+from electrum_dgb.plugins import BasePlugin, hook
+from electrum_dgb.transaction import deserialize
+from electrum_dgb.wallet import NewWallet
+from electrum_dgb.util import print_error
 
-from electrum_myr_gui.qt.password_dialog import make_password_dialog, run_password_dialog
-from electrum_myr_gui.qt.util import ok_cancel_buttons, EnterButton
+from electrum_dgb_gui.qt.password_dialog import make_password_dialog, run_password_dialog
+from electrum_dgb_gui.qt.util import ok_cancel_buttons, EnterButton
 
 try:
     from trezorlib.client import types
@@ -264,7 +264,7 @@ class TrezorWallet(NewWallet):
         except Exception, e:
             give_error(e)
         try:
-            msg_sig = self.get_client().sign_message('Myriadcoin', address_n, message)
+            msg_sig = self.get_client().sign_message('Digibyte', address_n, message)
         except Exception, e:
             give_error(e)
         finally:
@@ -282,7 +282,7 @@ class TrezorWallet(NewWallet):
         inputs = self.tx_inputs(tx)
         outputs = self.tx_outputs(tx)
         try:
-            signed_tx = self.get_client().sign_tx('Myriadcoin', inputs, outputs)[1]
+            signed_tx = self.get_client().sign_tx('Digibyte', inputs, outputs)[1]
         except Exception, e:
             give_error(e)
         finally:
@@ -377,7 +377,7 @@ class TrezorWallet(NewWallet):
             address = self.addresses(False)[0]
             address_id = self.address_id(address)
             n = self.get_client().expand_path(address_id)
-            device_address = self.get_client().get_address('Myriadcoin', n)
+            device_address = self.get_client().get_address('Digibyte', n)
             self.device_checked = True
 
             if device_address != address:

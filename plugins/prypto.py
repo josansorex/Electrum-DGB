@@ -18,9 +18,9 @@
 from PyQt4.QtGui import QPushButton, QMessageBox, QDialog, QVBoxLayout, QGridLayout, QLabel, QLineEdit
 from PyQt4.QtCore import Qt, QRectF, QByteArray
  
-from electrum_myr.plugins import BasePlugin, hook
-from electrum_myr.i18n import _
-from electrum_myr_gui.qt.util import *
+from electrum_dgb.plugins import BasePlugin, hook
+from electrum_dgb.i18n import _
+from electrum_dgb_gui.qt.util import *
 
 import urllib2
 
@@ -92,7 +92,7 @@ class Plugin(BasePlugin):
 
     def do_credit(self):
         if self.gui.main_window.question("Are you sure you want to redeem this code ?"):
-            coin = "MYR"
+            coin = "DGB"
             token = "88dba8ea5697f6bfe1881fa84062b81874618517"
             act = self.get_account("")
             myradd = act.get_addresses(False)

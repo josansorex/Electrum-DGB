@@ -1,8 +1,8 @@
 include README LICENCE RELEASE-NOTES AUTHORS
-include electrum-myr.conf.sample
-include electrum-myr.desktop
+include digielectrum.conf.sample
+include digielectrum.desktop
 include *.py
-include electrum-myr
+include digielectrum
 recursive-include lib *.py
 recursive-include gui *.py
 recursive-include plugins *.py

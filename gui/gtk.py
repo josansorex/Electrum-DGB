@@ -24,18 +24,18 @@ import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gdk, GObject, cairo
 from decimal import Decimal
-from electrum_myr.util import print_error
-from electrum_myr.bitcoin import is_valid
-from electrum_myr import WalletStorage, Wallet
+from electrum_dgb.util import print_error
+from electrum_dgb.bitcoin import is_valid
+from electrum_dgb import WalletStorage, Wallet
 
 Gdk.threads_init()
-APP_NAME = "Electrum-MYR"
+APP_NAME = "DigiElectrum"
 import platform
 MONOSPACE_FONT = 'Lucida Console' if platform.system() == 'Windows' else 'monospace'
 
-from electrum_myr.util import format_satoshis, parse_URI
-from electrum_myr.network import DEFAULT_SERVERS
-from electrum_myr.bitcoin import MIN_RELAY_TX_FEE
+from electrum_dgb.util import format_satoshis, parse_URI
+from electrum_dgb.network import DEFAULT_SERVERS
+from electrum_dgb.bitcoin import MIN_RELAY_TX_FEE
 
 def numbify(entry, is_int = False):
     text = entry.get_text().strip()
@@ -457,7 +457,7 @@ class ElectrumWindow:
         self.num_zeros = int(self.config.get('num_zeros',0))
         self.window = Gtk.Window(Gtk.WindowType.TOPLEVEL)
         self.window.connect('key-press-event', self.on_key)
-        title = 'Electrum-MYR ' + self.wallet.electrum_version + '  -  ' + self.config.path
+        title = 'DigiElectrum ' + self.wallet.electrum_version + '  -  ' + self.config.path
         if not self.wallet.seed: title += ' [seedless]'
         self.window.set_title(title)
         self.window.connect("destroy", Gtk.main_quit)
@@ -781,7 +781,7 @@ class ElectrumWindow:
             to_address = r
 
         if not is_valid(to_address):
-            self.show_message( "invalid myriadcoin address:\n"+to_address)
+            self.show_message( "invalid digibyte address:\n"+to_address)
             return
 
         try:

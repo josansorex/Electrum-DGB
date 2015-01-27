@@ -1,4 +1,4 @@
-from electrum_myr.util import print_error
+from electrum_dgb.util import print_error
 
 import httplib, urllib
 import socket
@@ -18,11 +18,11 @@ import PyQt4.QtGui as QtGui
 import aes
 import base64
 
-import electrum_myr as electrum
-from electrum_myr.plugins import BasePlugin, hook
-from electrum_myr.i18n import _
+import electrum_dgb as electrum
+from electrum_dgb.plugins import BasePlugin, hook
+from electrum_dgb.i18n import _
 
-from electrum_myr_gui.qt import HelpButton, EnterButton
+from electrum_dgb_gui.qt import HelpButton, EnterButton
 
 class Plugin(BasePlugin):
 

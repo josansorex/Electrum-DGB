@@ -9,10 +9,10 @@ import threading
 import time
 import re
 from decimal import Decimal
-from electrum_myr.plugins import BasePlugin, hook
-from electrum_myr.i18n import _
-from electrum_myr_gui.qt.util import *
-from electrum_myr_gui.qt.amountedit import AmountEdit
+from electrum_dgb.plugins import BasePlugin, hook
+from electrum_dgb.i18n import _
+from electrum_dgb_gui.qt.util import *
+from electrum_dgb_gui.qt.amountedit import AmountEdit
 
 
 EXCHANGES = ["Cryptsy",
@@ -96,7 +96,7 @@ class Exchanger(threading.Thread):
         quote_currencies = {"BTC": 0.0}
         for cur in quote_currencies:
             try:
-                quote_currencies[cur] = Decimal(self.get_json('api.mintpal.com', "/v1/market/stats/MYR/BTC")[0]['last_price'])
+                quote_currencies[cur] = Decimal(self.get_json('api.mintpal.com', "/v1/market/stats/DGB/BTC")[0]['last_price'])
             except Exception:
                 pass
         quote_currencies['mBTC'] = quote_currencies['BTC'] * Decimal('1000.0')
@@ -109,7 +109,7 @@ class Exchanger(threading.Thread):
     def update_pl(self):
         quote_currencies = {"BTC": 0.0}
         try:
-            jsonresp = self.get_json('api.prelude.io', "/last/MYR")
+            jsonresp = self.get_json('api.prelude.io', "/last/DGB")
         except Exception:
             return
         try:
@@ -127,7 +127,7 @@ class Exchanger(threading.Thread):
     def update_c(self):
         quote_currencies = {"BTC": 0.0}
         try:
-            jsonresp = self.get_json('pubapi.cryptsy.com', "/api.php?method=singlemarketdata&marketid=200", http=True)['return']['markets']['MYR']
+            jsonresp = self.get_json('pubapi.cryptsy.com', "/api.php?method=singlemarketdata&marketid=200", http=True)['return']['markets']['DGB']
         except Exception:
             return
         try:
@@ -208,7 +208,7 @@ class Plugin(BasePlugin):
         self.get_fiat_price_text(r)
         quote = r.get(0)
         if quote:
-            price_text = "1 MYR~%s"%quote
+            price_text = "1 DGB~%s"%quote
             fiat_currency = self.fiat_unit()
             btc_price = self.btc_rate
             fiat_balance = Decimal(btc_price) * (Decimal(btc_balance)/100000000)

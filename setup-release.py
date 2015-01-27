@@ -1,5 +1,5 @@
 """
-py2app/py2exe build script for Electrum Myriadcoin
+py2app/py2exe build script for Electrum Digibyte
 
 Usage (Mac OS X):
      python setup.py py2app
@@ -18,8 +18,8 @@ from lib.util import print_error
 from lib.version import ELECTRUM_VERSION as version
 
 
-name = "Electrum-MYR"
-mainscript = 'electrum-myr'
+name = "DigiElectrum"
+mainscript = 'digielectrum'
 
 if sys.version_info[:3] < (2, 6, 0):
     print_error("Error: " + name + " requires Python version >= 2.6.0...")
@@ -45,7 +45,7 @@ if sys.platform == 'darwin':
 elif sys.platform == 'win32':
     extra_options = dict(
         setup_requires=['py2exe'],
-        windows=[{"script":"electrum-myr"}],
+        windows=[{"script":"digielectrum"}],
         options={"py2exe":{
             "packages":["lib", "plugins", "gui"],
             "includes":["sip", "PyQt4"],

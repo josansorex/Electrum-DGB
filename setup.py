@@ -17,14 +17,14 @@ if sys.version_info[:3] < (2, 6, 0):
 
 usr_share = '/usr/share'
 if not os.access(usr_share, os.W_OK):
-    usr_share = os.getenv("XDG_DATA_HOME", os.path.join(os.getenv("HOME"), ".local", "share"))
+    usr_share = os.getenv("XDG_DATA_HOME", os.path.join(os.path.expanduser("~"), ".local", "share"))
 
 data_files = []
 if (len(sys.argv) > 1 and (sys.argv[1] == "sdist")) or (platform.system() != 'Windows' and platform.system() != 'Darwin'):
     print "Including all files"
     data_files += [
-        (os.path.join(usr_share, 'applications/'), ['electrum-myr.desktop']),
-        (os.path.join(usr_share, 'app-install', 'icons/'), ['icons/electrum-myr.png'])
+        (os.path.join(usr_share, 'applications/'), ['digielectrum.desktop']),
+        (os.path.join(usr_share, 'app-install', 'icons/'), ['icons/digielectrum.png'])
     ]
     if not os.path.exists('locale'):
         os.mkdir('locale')
@@ -35,7 +35,7 @@ if (len(sys.argv) > 1 and (sys.argv[1] == "sdist")) or (platform.system() != 'Wi
 
 appdata_dir = util.appdata_dir()
 if not os.access(appdata_dir, os.W_OK):
-    appdata_dir = os.path.join(usr_share, "electrum-myr")
+    appdata_dir = os.path.join(usr_share, "digielectrum")
 
 data_files += [
     (appdata_dir, ["data/README"]),
@@ -58,15 +58,11 @@ for lang in os.listdir('data/wordlist'):
 
 
 setup(
-    name="Electrum-MYR",
+    name="DigiElectrum",
     version=version.ELECTRUM_VERSION,
     install_requires=[
         'slowaes',
         'ecdsa>=0.9',
-        'ltc_scrypt',
-        'groestl_hash',
-        'qubit_hash',
-        'skeinhash',
         'pbkdf2',
         'requests',
         'pyasn1',
@@ -76,72 +72,72 @@ setup(
         'tlslite'
     ],
     package_dir={
-        'electrum_myr': 'lib',
-        'electrum_myr_gui': 'gui',
-        'electrum_myr_plugins': 'plugins',
+        'electrum_dgb': 'lib',
+        'electrum_dgb_gui': 'gui',
+        'electrum_dgb_plugins': 'plugins',
     },
-    scripts=['electrum-myr'],
+    scripts=['digielectrum'],
     data_files=data_files,
     py_modules=[
-        'electrum_myr.account',
-        'electrum_myr.bitcoin',
-        'electrum_myr.blockchain',
-        'electrum_myr.bmp',
-        'electrum_myr.commands',
-        'electrum_myr.daemon',
-        'electrum_myr.i18n',
-        'electrum_myr.interface',
-        'electrum_myr.mnemonic',
-        'electrum_myr.msqr',
-        'electrum_myr.network',
-        'electrum_myr.network_proxy',
-        'electrum_myr.old_mnemonic',
-        'electrum_myr.paymentrequest',
-        'electrum_myr.paymentrequest_pb2',
-        'electrum_myr.plugins',
-        'electrum_myr.qrscanner',
-        'electrum_myr.scrypt',
-        'electrum_myr.simple_config',
-        'electrum_myr.synchronizer',
-        'electrum_myr.transaction',
-        'electrum_myr.util',
-        'electrum_myr.verifier',
-        'electrum_myr.version',
-        'electrum_myr.wallet',
-        'electrum_myr.x509',
-        'electrum_myr_gui.gtk',
-        'electrum_myr_gui.qt.__init__',
-        'electrum_myr_gui.qt.amountedit',
-        'electrum_myr_gui.qt.console',
-        'electrum_myr_gui.qt.history_widget',
-        'electrum_myr_gui.qt.icons_rc',
-        'electrum_myr_gui.qt.installwizard',
-        'electrum_myr_gui.qt.lite_window',
-        'electrum_myr_gui.qt.main_window',
-        'electrum_myr_gui.qt.network_dialog',
-        'electrum_myr_gui.qt.password_dialog',
-        'electrum_myr_gui.qt.paytoedit',
-        'electrum_myr_gui.qt.qrcodewidget',
-        'electrum_myr_gui.qt.qrtextedit',
-        'electrum_myr_gui.qt.receiving_widget',
-        'electrum_myr_gui.qt.seed_dialog',
-        'electrum_myr_gui.qt.transaction_dialog',
-        'electrum_myr_gui.qt.util',
-        'electrum_myr_gui.qt.version_getter',
-        'electrum_myr_gui.stdio',
-        'electrum_myr_gui.text',
-        'electrum_myr_plugins.btchipwallet',
-        'electrum_myr_plugins.cosigner_pool',
-        'electrum_myr_plugins.exchange_rate',
-        'electrum_myr_plugins.greenaddress_instant',
-        'electrum_myr_plugins.labels',
-        'electrum_myr_plugins.trezor',
-        'electrum_myr_plugins.virtualkeyboard',
+        'electrum_dgb.account',
+        'electrum_dgb.bitcoin',
+        'electrum_dgb.blockchain',
+        'electrum_dgb.bmp',
+        'electrum_dgb.commands',
+        'electrum_dgb.daemon',
+        'electrum_dgb.i18n',
+        'electrum_dgb.interface',
+        'electrum_dgb.mnemonic',
+        'electrum_dgb.msqr',
+        'electrum_dgb.network',
+        'electrum_dgb.network_proxy',
+        'electrum_dgb.old_mnemonic',
+        'electrum_dgb.paymentrequest',
+        'electrum_dgb.paymentrequest_pb2',
+        'electrum_dgb.plugins',
+        'electrum_dgb.qrscanner',
+        'electrum_dgb.scrypt',
+        'electrum_dgb.simple_config',
+        'electrum_dgb.synchronizer',
+        'electrum_dgb.transaction',
+        'electrum_dgb.util',
+        'electrum_dgb.verifier',
+        'electrum_dgb.version',
+        'electrum_dgb.wallet',
+        'electrum_dgb.x509',
+        'electrum_dgb_gui.gtk',
+        'electrum_dgb_gui.qt.__init__',
+        'electrum_dgb_gui.qt.amountedit',
+        'electrum_dgb_gui.qt.console',
+        'electrum_dgb_gui.qt.history_widget',
+        'electrum_dgb_gui.qt.icons_rc',
+        'electrum_dgb_gui.qt.installwizard',
+        'electrum_dgb_gui.qt.lite_window',
+        'electrum_dgb_gui.qt.main_window',
+        'electrum_dgb_gui.qt.network_dialog',
+        'electrum_dgb_gui.qt.password_dialog',
+        'electrum_dgb_gui.qt.paytoedit',
+        'electrum_dgb_gui.qt.qrcodewidget',
+        'electrum_dgb_gui.qt.qrtextedit',
+        'electrum_dgb_gui.qt.receiving_widget',
+        'electrum_dgb_gui.qt.seed_dialog',
+        'electrum_dgb_gui.qt.transaction_dialog',
+        'electrum_dgb_gui.qt.util',
+        'electrum_dgb_gui.qt.version_getter',
+        'electrum_dgb_gui.stdio',
+        'electrum_dgb_gui.text',
+        'electrum_dgb_plugins.btchipwallet',
+        'electrum_dgb_plugins.cosigner_pool',
+        'electrum_dgb_plugins.exchange_rate',
+        'electrum_dgb_plugins.greenaddress_instant',
+        'electrum_dgb_plugins.labels',
+        'electrum_dgb_plugins.trezor',
+        'electrum_dgb_plugins.virtualkeyboard',
     ],
-    description="Lightweight Myriadcoin Wallet",
-    author="myr",
+    description="Lightweight Digibyte Wallet",
+    author="dgb",
     author_email="myr@myr.myr",
     license="GNU GPLv3",
-    url="http://myr.electr.us",
-    long_description="""Lightweight Myriadcoin Wallet"""
+    url="http://digibyte.co",
+    long_description="""Lightweight Digibyte Wallet"""
 )

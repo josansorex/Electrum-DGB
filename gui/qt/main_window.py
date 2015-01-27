@@ -17,8 +17,8 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 import sys, time, datetime, re, threading
-from electrum_myr.i18n import _, set_language
-from electrum_myr.util import print_error, print_msg
+from electrum_dgb.i18n import _, set_language
+from electrum_dgb.util import print_error, print_msg
 import os.path, json, ast, traceback
 import webbrowser
 import shutil
@@ -30,17 +30,17 @@ from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 import PyQt4.QtCore as QtCore
 
-from electrum_myr.bitcoin import MIN_RELAY_TX_FEE, is_valid
-from electrum_myr.plugins import run_hook
+from electrum_dgb.bitcoin import MIN_RELAY_TX_FEE, is_valid
+from electrum_dgb.plugins import run_hook
 
 import icons_rc
 
-from electrum_myr.util import format_satoshis
-from electrum_myr import Transaction
-from electrum_myr import mnemonic
-from electrum_myr import util, bitcoin, commands, Interface, Wallet
-from electrum_myr import SimpleConfig, Wallet, WalletStorage
-from electrum_myr import Imported_Wallet
+from electrum_dgb.util import format_satoshis
+from electrum_dgb import Transaction
+from electrum_dgb import mnemonic
+from electrum_dgb import util, bitcoin, commands, Interface, Wallet
+from electrum_dgb import SimpleConfig, Wallet, WalletStorage
+from electrum_dgb import Imported_Wallet
 
 from amountedit import AmountEdit, BTCAmountEdit, MyLineEdit
 from network_dialog import NetworkDialog
@@ -64,7 +64,7 @@ PR_PAID    = 3     # send and propagated
 PR_ERROR   = 4     # could not parse
 
 
-from electrum_myr import ELECTRUM_VERSION
+from electrum_dgb import ELECTRUM_VERSION
 import re
 
 from util import MyTreeWidget, HelpButton, EnterButton, line_dialog, text_dialog, ok_cancel_buttons, close_button, WaitingDialog
@@ -145,7 +145,7 @@ class ElectrumWindow(QMainWindow):
         if self.config.get("is_maximized"):
             self.showMaximized()
 
-        self.setWindowIcon(QIcon(":icons/electrum-myr.png"))
+        self.setWindowIcon(QIcon(":icons/digielectrum.png"))
         self.init_menubar()
 
         QShortcut(QKeySequence("Ctrl+W"), self, self.close)
@@ -198,7 +198,7 @@ class ElectrumWindow(QMainWindow):
         run_hook('close_wallet')
 
     def load_wallet(self, wallet):
-        import electrum_myr as electrum
+        import electrum_dgb as electrum
         self.wallet = wallet
         self.update_wallet_format()
         # address used to create a dummy transaction and estimate transaction fee
@@ -207,7 +207,7 @@ class ElectrumWindow(QMainWindow):
         self.accounts_expanded = self.wallet.storage.get('accounts_expanded',{})
         self.current_account = self.wallet.storage.get("current_account", None)
 
-        title = 'Electrum-MYR ' + self.wallet.electrum_version + '  -  ' + self.wallet.storage.path
+        title = 'DigiElectrum ' + self.wallet.electrum_version + '  -  ' + self.wallet.storage.path
         if self.wallet.is_watching_only(): title += ' [%s]' % (_('watching only'))
         self.setWindowTitle( title )
         self.update_wallet()
@@ -362,7 +362,7 @@ class ElectrumWindow(QMainWindow):
 
         help_menu = menubar.addMenu(_("&Help"))
         help_menu.addAction(_("&About"), self.show_about)
-        help_menu.addAction(_("&Official website"), lambda: webbrowser.open("http://myr.electr.us"))
+        help_menu.addAction(_("&Official website"), lambda: webbrowser.open("http://digibyte.co"))
         help_menu.addSeparator()
         help_menu.addAction(_("&Documentation"), lambda: webbrowser.open("http://myr.electr.us/documentation.html")).setShortcut(QKeySequence.HelpContents)
         help_menu.addAction(_("&Report Bug"), self.show_report_bug)
@@ -370,12 +370,12 @@ class ElectrumWindow(QMainWindow):
         self.setMenuBar(menubar)
 
     def show_about(self):
-        QMessageBox.about(self, "Electrum-MYR",
-            _("Version")+" %s" % (self.wallet.electrum_version) + "\n\n" + _("Electrum's focus is speed, with low resource usage and simplifying Myriadcoin. You do not need to perform regular backups, because your wallet can be recovered from a secret phrase that you can memorize or write on paper. Startup times are instant because it operates in conjunction with high-performance servers that handle the most complicated parts of the Myriadcoin system."))
+        QMessageBox.about(self, "DigiElectrum",
+            _("Version")+" %s" % (self.wallet.electrum_version) + "\n\n" + _("Electrum's focus is speed, with low resource usage and simplifying Digibyte. You do not need to perform regular backups, because your wallet can be recovered from a secret phrase that you can memorize or write on paper. Startup times are instant because it operates in conjunction with high-performance servers that handle the most complicated parts of the Digibyte system."))
 
     def show_report_bug(self):
-        QMessageBox.information(self, "Electrum-MYR - " + _("Reporting Bugs"),
-            _("Please report any bugs as issues on github:")+" <a href=\"https://github.com/cryptorepaircrew/electrum-myr/issues\">https://github.com/cryptorepaircrew/electrum-myr/issues</a>")
+        QMessageBox.information(self, "DigiElectrum - " + _("Reporting Bugs"),
+            _("Please report any bugs as issues on github:")+" <a href=\"https://github.com/cryptorepaircrew/digielectrum/issues\">https://github.com/cryptorepaircrew/digielectrum/issues</a>")
 
 
     def notify_transactions(self):
@@ -407,7 +407,7 @@ class ElectrumWindow(QMainWindow):
 
     def notify(self, message):
         if self.tray:
-            self.tray.showMessage("Electrum-MYR", message, QSystemTrayIcon.Information, 20000)
+            self.tray.showMessage("DigiElectrum", message, QSystemTrayIcon.Information, 20000)
 
 
 
@@ -455,11 +455,11 @@ class ElectrumWindow(QMainWindow):
     def base_unit(self):
         assert self.decimal_point in [2, 5, 8]
         if self.decimal_point == 2:
-            return 'uMYR'
+            return 'uDGB'
         if self.decimal_point == 5:
-            return 'mMYR'
+            return 'mDGB'
         if self.decimal_point == 8:
-            return 'MYR'
+            return 'DGB'
         raise Exception('Unknown base unit')
 
     def update_status(self):
@@ -530,13 +530,11 @@ class ElectrumWindow(QMainWindow):
     def create_history_menu(self, position):
         self.history_list.selectedIndexes()
         item = self.history_list.currentItem()
-        be = self.config.get('block_explorer', 'myriad.theblockexplorer.com')
-        if be == 'myriad.theblockexplorer.com':
-            block_explorer = 'http://myriad.theblockexplorer.com:2750/tx/'
-        if be == 'birdonwheels5.no-ip.org':
-            block_explorer = 'http://birdonwheels5.no-ip.org/tx/'
-        if be == 'myr.coinpi.pe':
-            block_explorer = 'http://myr.coinpi.pe/tx/'
+        be = self.config.get('block_explorer', 'DigiExplorer')
+        if be == 'DigiExplorer':
+            block_explorer = 'http://digiexplorer.info/tx/'
+        if be == 'dgb.cryptopoolmining':
+            block_explorer = 'http://insight.dgb.cryptopoolmining.com/tx/'
 
         if not item: return
         tx_hash = str(item.data(0, Qt.UserRole).toString())
@@ -842,7 +840,7 @@ class ElectrumWindow(QMainWindow):
                 query.append('amount=%s'%format_satoshis(amount))
             if message:
                 query.append('message=%s'%urllib.quote(message))
-            p = urlparse.ParseResult(scheme='myriadcoin', netloc='', path=addr, params='', query='&'.join(query), fragment='')
+            p = urlparse.ParseResult(scheme='digibyte', netloc='', path=addr, params='', query='&'.join(query), fragment='')
             url = urlparse.urlunparse(p)
         else:
             url = ""
@@ -863,7 +861,7 @@ class ElectrumWindow(QMainWindow):
         from paytoedit import PayToEdit
         self.amount_e = BTCAmountEdit(self.get_decimal_point)
         self.payto_e = PayToEdit(self)
-        self.payto_help = HelpButton(_('Recipient of the funds.') + '\n\n' + _('You may enter a Myriadcoin address, a label from your list of contacts (a list of completions will be proposed), or an alias (email-like address that forwards to a Myriadcoin address)'))
+        self.payto_help = HelpButton(_('Recipient of the funds.') + '\n\n' + _('You may enter a Digibyte address, a label from your list of contacts (a list of completions will be proposed), or an alias (email-like address that forwards to a Digibyte address)'))
         grid.addWidget(QLabel(_('Pay to')), 1, 0)
         grid.addWidget(self.payto_e, 1, 1, 1, 3)
         grid.addWidget(self.payto_help, 1, 4)
@@ -903,7 +901,7 @@ class ElectrumWindow(QMainWindow):
         self.fee_e = BTCAmountEdit(self.get_decimal_point)
         grid.addWidget(self.fee_e_label, 5, 0)
         grid.addWidget(self.fee_e, 5, 1, 1, 2)
-        msg = _('Myriadcoin transactions are in general not free. A transaction fee is paid by the sender of the funds.') + '\n\n'\
+        msg = _('Digibyte transactions are in general not free. A transaction fee is paid by the sender of the funds.') + '\n\n'\
               + _('The amount of fee can be decided freely by the sender. However, transactions with low fees take more time to be processed.') + '\n\n'\
               + _('A suggested fee is automatically added to this field. You may override it. The suggested fee increases with the size of the transaction.')
         self.fee_e_help = HelpButton(msg)
@@ -1043,12 +1041,12 @@ class ElectrumWindow(QMainWindow):
 
         for type, addr, amount in outputs:
             if addr is None:
-                QMessageBox.warning(self, _('Error'), _('Myriadcoin Address is None'), _('OK'))
+                QMessageBox.warning(self, _('Error'), _('Digibyte Address is None'), _('OK'))
                 return
             if type == 'op_return':
                 continue
             if type == 'address' and not bitcoin.is_address(addr):
-                QMessageBox.warning(self, _('Error'), _('Invalid Myriadcoin Address'), _('OK'))
+                QMessageBox.warning(self, _('Error'), _('Invalid Digibyte Address'), _('OK'))
                 return
             if amount is None:
                 QMessageBox.warning(self, _('Error'), _('Invalid Amount'), _('OK'))
@@ -1234,7 +1232,7 @@ class ElectrumWindow(QMainWindow):
         try:
             address, amount, label, message, request_url = util.parse_URI(URI)
         except Exception as e:
-            QMessageBox.warning(self, _('Error'), _('Invalid myriadcoin URI:') + '\n' + str(e), _('OK'))
+            QMessageBox.warning(self, _('Error'), _('Invalid digibyte URI:') + '\n' + str(e), _('OK'))
             return
 
         self.tabs.setCurrentIndex(1)
@@ -1256,7 +1254,7 @@ class ElectrumWindow(QMainWindow):
                 self.amount_e.setAmount(amount)
             return
 
-        from electrum_myr import paymentrequest
+        from electrum_dgb import paymentrequest
         def payment_request():
             self.payment_request = paymentrequest.PaymentRequest(self.config)
             self.payment_request.read(request_url)
@@ -1520,7 +1518,7 @@ class ElectrumWindow(QMainWindow):
             payto_addr = item.data(0,33).toString()
             menu.addAction(_("Copy to Clipboard"), lambda: self.app.clipboard().setText(addr))
             menu.addAction(_("Pay to"), lambda: self.payto(payto_addr))
-            menu.addAction(_("QR code"), lambda: self.show_qrcode("myriadcoin:" + addr, _("Address")))
+            menu.addAction(_("QR code"), lambda: self.show_qrcode("digibyte:" + addr, _("Address")))
             if is_editable:
                 menu.addAction(_("Edit label"), lambda: self.edit_label(False))
                 menu.addAction(_("Delete"), lambda: self.delete_contact(addr))
@@ -1534,7 +1532,7 @@ class ElectrumWindow(QMainWindow):
         self.update_invoices_tab()
 
     def show_invoice(self, key):
-        from electrum_myr.paymentrequest import PaymentRequest
+        from electrum_dgb.paymentrequest import PaymentRequest
         domain, memo, value, expiration, status, tx_hash = self.invoices[key]
         pr = PaymentRequest(self.config)
         pr.read_file(key)
@@ -1553,7 +1551,7 @@ class ElectrumWindow(QMainWindow):
         QMessageBox.information(self, 'Invoice', msg , 'OK')
 
     def do_pay_invoice(self, key):
-        from electrum_myr.paymentrequest import PaymentRequest
+        from electrum_dgb.paymentrequest import PaymentRequest
         domain, memo, value, expiration, status, tx_hash = self.invoices[key]
         pr = PaymentRequest(self.config)
         pr.read_file(key)
@@ -1806,7 +1804,7 @@ class ElectrumWindow(QMainWindow):
         vbox.addWidget(QLabel(_('Account name')+':'))
         e = QLineEdit()
         vbox.addWidget(e)
-        msg = _("Note: Newly created accounts are 'pending' until they receive myriadcoins.") + " " \
+        msg = _("Note: Newly created accounts are 'pending' until they receive digibytes.") + " " \
             + _("You will need to wait for 2 confirmations until the correct balance is displayed and more addresses are created for that account.")
         l = QLabel(msg)
         l.setWordWrap(True)
@@ -2190,7 +2188,7 @@ class ElectrumWindow(QMainWindow):
             self.show_transaction(tx)
 
     def do_process_from_txid(self):
-        from electrum_myr import transaction
+        from electrum_dgb import transaction
         txid, ok = QInputDialog.getText(self, _('Lookup transaction'), _('Transaction ID') + ':')
         if ok and txid:
             r = self.network.synchronous_get([ ('blockchain.transaction.get',[str(txid)]) ])[0]
@@ -2274,7 +2272,7 @@ class ElectrumWindow(QMainWindow):
         e.setReadOnly(True)
         vbox.addWidget(e)
 
-        defaultname = 'electrum-myr-private-keys.csv'
+        defaultname = 'digielectrum-private-keys.csv'
         select_msg = _('Select file to export your private keys to')
         hbox, filename_e, csv_button = filename_field(self, self.config, defaultname, select_msg)
         vbox.addLayout(hbox)
@@ -2354,7 +2352,7 @@ class ElectrumWindow(QMainWindow):
     def do_export_labels(self):
         labels = self.wallet.labels
         try:
-            fileName = self.getSaveFileName(_("Select file to save your labels"), 'electrum-myr_labels.dat', "*.dat")
+            fileName = self.getSaveFileName(_("Select file to save your labels"), 'digielectrum_labels.dat', "*.dat")
             if fileName:
                 with open(fileName, 'w+') as f:
                     json.dump(labels, f)
@@ -2370,7 +2368,7 @@ class ElectrumWindow(QMainWindow):
         d.setMinimumSize(400, 200)
         vbox = QVBoxLayout(d)
 
-        defaultname = os.path.expanduser('~/electrum-myr-history.csv')
+        defaultname = os.path.expanduser('~/digielectrum-history.csv')
         select_msg = _('Select file to export your wallet transactions to')
 
         hbox, filename_e, csv_button = filename_field(self, self.config, defaultname, select_msg)
@@ -2533,7 +2531,7 @@ class ElectrumWindow(QMainWindow):
         lang_label = QLabel(_('Language') + ':')
         lang_help = HelpButton(_('Select which language is used in the GUI (after restart).'))
         lang_combo = QComboBox()
-        from electrum_myr.i18n import languages
+        from electrum_dgb.i18n import languages
         lang_combo.addItems(languages.values())
         try:
             index = languages.keys().index(self.config.get("language",''))
@@ -2581,24 +2579,24 @@ class ElectrumWindow(QMainWindow):
         fee_e.editingFinished.connect(on_fee)
         widgets.append((fee_label, fee_e, fee_help))
 
-        units = ['MYR', 'mMYR', 'uMYR']
+        units = ['DGB', 'mDGB', 'uDGB']
         unit_label = QLabel(_('Base unit') + ':')
         unit_combo = QComboBox()
         unit_combo.addItems(units)
         unit_combo.setCurrentIndex(units.index(self.base_unit()))
         msg = _('Base unit of your wallet.')\
-              + '\n1MYR=1000mMYR.\n' \
+              + '\n1DGB=1000mDGB.\n' \
               + _(' These settings affects the fields in the Send tab')+' '
         unit_help = HelpButton(msg)
         def on_unit(x):
             unit_result = units[unit_combo.currentIndex()]
             if self.base_unit() == unit_result:
                 return
-            if unit_result == 'MYR':
+            if unit_result == 'DGB':
                 self.decimal_point = 8
-            elif unit_result == 'mMYR':
+            elif unit_result == 'mDGB':
                 self.decimal_point = 5
-            elif unit_result == 'uMYR':
+            elif unit_result == 'uDGB':
                 self.decimal_point = 2
             else:
                 raise Exception('Unknown base unit')
@@ -2612,11 +2610,11 @@ class ElectrumWindow(QMainWindow):
         unit_combo.currentIndexChanged.connect(on_unit)
         widgets.append((unit_label, unit_combo, unit_help))
 
-        block_explorers = ['myriad.theblockexplorer.com', 'birdonwheels5.no-ip.org', 'myr.coinpi.pe']
+        block_explorers = ['digiexplorer.info', 'dgb.cryptopoolmining.com']
         block_ex_label = QLabel(_('Online Block Explorer') + ':')
         block_ex_combo = QComboBox()
         block_ex_combo.addItems(block_explorers)
-        block_ex_combo.setCurrentIndex(block_explorers.index(self.config.get('block_explorer', 'myriad.theblockexplorer.com')))
+        block_ex_combo.setCurrentIndex(block_explorers.index(self.config.get('block_explorer', 'digiexplorer.info')))
         block_ex_help = HelpButton(_('Choose which online block explorer to use for functions that open a web browser'))
         def on_be(x):
             be_result = block_explorers[block_ex_combo.currentIndex()]
@@ -2624,7 +2622,7 @@ class ElectrumWindow(QMainWindow):
         block_ex_combo.currentIndexChanged.connect(on_be)
         widgets.append((block_ex_label, block_ex_combo, block_ex_help))
 
-        from electrum_myr import qrscanner
+        from electrum_dgb import qrscanner
         system_cameras = qrscanner._find_system_cameras()
         qr_combo = QComboBox()
         qr_combo.addItem("Default","default")
@@ -2708,7 +2706,7 @@ class ElectrumWindow(QMainWindow):
 
 
     def plugins_dialog(self):
-        from electrum_myr.plugins import plugins
+        from electrum_dgb.plugins import plugins
 
         d = QDialog(self)
         d.setWindowTitle(_('Electrum Plugins'))

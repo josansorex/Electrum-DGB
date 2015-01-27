@@ -2,10 +2,10 @@ import curses, datetime, locale
 from decimal import Decimal
 _ = lambda x:x
 #from i18n import _
-from electrum_myr.util import format_satoshis, set_verbosity
-from electrum_myr.bitcoin import is_valid
+from electrum_dgb.util import format_satoshis, set_verbosity
+from electrum_dgb.bitcoin import is_valid
 
-from electrum_myr import Wallet, WalletStorage
+from electrum_dgb import Wallet, WalletStorage
 
 import tty, sys
 
@@ -18,7 +18,7 @@ class ElectrumGui:
         self.network = network
         storage = WalletStorage(config)
         if not storage.file_exists:
-            print "Wallet not found. try 'electrum-myr create'"
+            print "Wallet not found. try 'digielectrum create'"
             exit()
 
         self.wallet = Wallet(storage)
@@ -287,7 +287,7 @@ class ElectrumGui:
 
     def do_send(self):
         if not is_valid(self.str_recipient):
-            self.show_message(_('Invalid Myriadcoin address'))
+            self.show_message(_('Invalid Digibyte address'))
             return
         try:
             amount = int( Decimal( self.str_amount) * 100000000 )

@@ -19,10 +19,6 @@
 
 from datetime import datetime
 import sys
-import pyasn1
-import pyasn1_modules
-import tlslite
-import rfc2459
 
 try:
     import pyasn1

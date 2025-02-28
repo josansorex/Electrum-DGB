@@ -1,9 +1,9 @@
 =========================================
-DigiElectrum - Electrum DGB (Release 1.7.2)
+DigiElectrum - Electrum DGB (Release 1.3.4)
 =========================================
 
 .. image:: https://img.shields.io/github/v/release/josansorex/Electrum-DGB?style=flat-square
-   :target: https://github.com/josansorex/Electrum-DGB/releases/tag/v1.7.2
+   :target: https://github.com/josansorex/Electrum-DGB/releases/tag/v1.3.4
    :alt: Release
 
 .. image:: https://img.shields.io/github/v/tag/josansorex/Electrum-DGB?style=flat-square

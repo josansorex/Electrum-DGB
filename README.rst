@@ -11,7 +11,7 @@ DigiElectrum - Electrum DGB (Release 1.3.4)
    :alt: Tags
 
 .. image:: https://img.shields.io/github/license/josansorex/Electrum-DGB?style=flat-square
-   :target: https://github.com/josansorex/Electrum-DGB/blob/main/LICENSE
+   :target: https://github.com/josansorex/Electrum-DGB/blob/master/LICENCE
    :alt: License
 
 Overview

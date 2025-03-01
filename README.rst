@@ -87,13 +87,6 @@ Key Features
    - Run directly from source or install system-wide.
    - Perfect for USB or offline usage when combined with cold storage best practices.
 
-Contents
---------
-
-1. Getting Started_
-2. Usage Guide_
-3. Creating Official Packages_
-4. Troubleshooting & FAQ_
 
 .. _Getting Started:
 

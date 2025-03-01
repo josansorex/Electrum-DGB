@@ -1,5 +1,5 @@
 =========================================
-DigiElectrum - Electrum DGB (Release 1.3.4)
+DigiElectrum - Electrum DGB
 =========================================
 
 .. image:: https://img.shields.io/github/v/release/josansorex/Electrum-DGB?style=flat-square
@@ -13,6 +13,37 @@ DigiElectrum - Electrum DGB (Release 1.3.4)
 .. image:: https://img.shields.io/github/license/josansorex/Electrum-DGB?style=flat-square
    :target: https://github.com/josansorex/Electrum-DGB/blob/master/LICENCE
    :alt: License
+
+Download
+--------
+
+.. raw:: html
+
+   <table style="border: 2px solid #ccc; border-collapse: collapse; margin: 1em 0;">
+     <tr>
+       <td style="border: 1px solid #ccc; padding: 10px; vertical-align: top;">
+         <strong>Windows</strong><br>
+         <a href="LINK_WINDOWS">
+           <img src="https://img.shields.io/badge/DigiElectrum%20for-Windows-blue?style=for-the-badge&logo=windows" alt="Download DigiElectrum for Windows">
+         </a>
+       </td>
+       <td style="border: 1px solid #ccc; padding: 10px; vertical-align: top;">
+         <strong>macOS</strong><br>
+         <a href="LINK_MACOS">
+           <img src="https://img.shields.io/badge/DigiElectrum%20for-macOS-silver?style=for-the-badge&logo=apple" alt="Download DigiElectrum for macOS">
+         </a>
+       </td>
+       <td style="border: 1px solid #ccc; padding: 10px; vertical-align: top;">
+         <strong>Linux</strong><br>
+         <a href="LINK_LINUX">
+           <img src="https://img.shields.io/badge/DigiElectrum%20for-Linux-green?style=for-the-badge&logo=linux" alt="Download DigiElectrum for Linux">
+         </a>
+       </td>
+     </tr>
+   </table>
+
+
+
 
 Overview
 --------

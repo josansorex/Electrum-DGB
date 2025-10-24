@@ -3,11 +3,11 @@ DigiElectrum - Electrum DGB
 =========================================
 
 .. image:: https://img.shields.io/github/v/release/josansorex/Electrum-DGB?style=flat-square
-   :target: https://github.com/josansorex/Electrum-DGB/releases/tag/v1.3.4
+   :target: https://github.com/josansorex/Electrum-DGB/releases/tag/v1.3.5
    :alt: Release
 
 .. image:: https://img.shields.io/github/v/tag/josansorex/Electrum-DGB?style=flat-square
-   :target: https://github.com/josansorex/Electrum-DGB/releases/tag/v1.3.4
+   :target: https://github.com/josansorex/Electrum-DGB/releases/tag/v1.3.5
    :alt: Tags
 
 .. image:: https://img.shields.io/github/license/josansorex/Electrum-DGB?style=flat-square
@@ -23,19 +23,19 @@ Download
      <tr>
        <td style="border: 1px solid #ccc; padding: 10px; vertical-align: top;">
          <strong>Windows</strong><br>
-         <a href="https://github.com/josansorex/Electrum-DGB/releases/download/v1.3.4/electrum-dgb-1.3.4.exe">
+         <a href="https://github.com/josansorex/Electrum-DGB/releases/download/v1.3.5/electrum-dgb-1.3.5.exe">
            <img src="https://img.shields.io/badge/DigiElectrum%20for-Windows-blue?style=for-the-badge&logo=windows" alt="Download DigiElectrum for Windows">
          </a>
        </td>
        <td style="border: 1px solid #ccc; padding: 10px; vertical-align: top;">
          <strong>macOS</strong><br>
-         <a href="https://github.com/josansorex/Electrum-DGB/releases/download/v1.3.4/electrum-dgb-1.3.4.AppImage">
+         <a href="https://github.com/josansorex/Electrum-DGB/releases/download/v1.3.5/electrum-dgb-1.3.5.dmg">
            <img src="https://img.shields.io/badge/DigiElectrum%20for-macOS-silver?style=for-the-badge&logo=apple" alt="Download DigiElectrum for macOS">
          </a>
        </td>
        <td style="border: 1px solid #ccc; padding: 10px; vertical-align: top;">
          <strong>Linux</strong><br>
-         <a href="https://github.com/josansorex/Electrum-DGB/releases/download/v1.3.4/electrum-dgb-1.3.4.AppImage">
+         <a href="https://github.com/josansorex/Electrum-DGB/releases/download/v1.3.5/electrum-dgb-1.3.5.AppImage">
            <img src="https://img.shields.io/badge/DigiElectrum%20for-Linux-green?style=for-the-badge&logo=linux" alt="Download DigiElectrum for Linux">
          </a>
        </td>
@@ -247,3 +247,4 @@ DigiElectrum is released under the `GNU GPL v3`_ license. For details, see the `
 
 .. _GNU GPL v3: https://www.gnu.org/licenses/gpl-3.0.html
 .. _License file: https://github.com/josansorex/Electrum-DGB/blob/main/LICENSE
+
